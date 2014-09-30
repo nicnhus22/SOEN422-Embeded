@@ -11,9 +11,10 @@
    #define CPU_16MHz 0x00
    
    int main(){
+          CPU_PRESCALE(CPU_16MHz);
+          
           usb_init();
           
-          CPU_PRESCALE(CPU_16MHz);
           DDRB &= ~DDRB;
           
           // Set port 6 to Output
