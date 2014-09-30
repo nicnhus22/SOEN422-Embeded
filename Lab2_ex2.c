@@ -4,24 +4,34 @@
 #define F_CPU 16000000L
 #define CPU_16MHz 0x00
 
+/*
+   Write a sketch that turns on an LED array element when a pin of your choice is grounded 
+   but the LED element must turn off when the same pin is physically set to HIGH
+*/
 int main(){
- CPU_PRESCALE(CPU_16MHz);   
-
- // Set DDRD to 0
- DDRD &= ~DDRD;
-
- // Set PD6 to be output  
- DDRD |= (1<<6);
-int value;
-while(1){
-     value = PIND;
-     if(value & (1<<5)){
-		PORTD |= (0<<6);
-    }
-   else {
-		PORTD |= (1<<6);
-   }
-    PORTD &=~(1<<6);
-}
 	
+   // Set CPU prescaler
+   CPU_PRESCALE(CPU_16MHz);   
+
+   // Set DDRD to 0
+   DDRD &= ~DDRD;
+
+   // Set PD6 to be output pin  
+   DDRD |= (1<<6);
+
+   // This will change whethere we GROUND the pin or not
+   uint16_t value;
+
+   while(1){
+      value = PIND;
+      
+      if(value & (1<<5)){
+         PORTD |= (0<<6);
+      } else {
+	 PORTD |= (1<<6);
+      }
+      
+      // Turn off LED
+      PORTD &=~(1<<6);
+   }
 }
