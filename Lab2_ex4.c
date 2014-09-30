@@ -12,9 +12,10 @@
    #define CPU_16MHz 0x00
    
    int main(){
+         CPU_PRESCALE(CPU_16MHz);
           usb_init();
           
-          CPU_PRESCALE(CPU_16MHz);
+          
           DDRB |= (1<<7);
           TCCR0A = 0b10000011;
           TCCR0B = 0b00000011;
