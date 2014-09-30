@@ -23,8 +23,10 @@ int main(){
    uint16_t value;
 
    while(1){
+      // Read PIN value into variable
       value = PIND;
       
+      // Turn on LED if PIN is grounded
       if(value & (1<<5)){
          PORTD |= (0<<6);
       } else {
