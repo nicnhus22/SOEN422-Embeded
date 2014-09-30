@@ -12,9 +12,9 @@
       
    
    int main(){
-   	usb_init();
+   	CPU_PRESCALE(CPU_16MHz);
    	
-        CPU_PRESCALE(CPU_16MHz);
+   	usb_init();
   
   	while(1){
   		usb_serial_putchar('a');
