@@ -8,7 +8,10 @@
 #include <string.h>
 #include "usb_serial.h"
 
-
+/*
+   Install an IR sensor on an A/D input. Modify your program to read the analog value from the IR Sensor
+   and print the value to the serial monitor at a rate of approximately once per second.
+*/
 int main(){
 	CPU_PRESCALE(CPU_16MHz);
 	
@@ -38,7 +41,7 @@ int main(){
 		sprint(buffer, "value = %d", value);
 		usb_serial_write(buffer, strlen(buffer));
 		
-		_delay_ms(100);
+		_delay_ms(1000);
   	}
 	
 }
