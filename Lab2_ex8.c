@@ -21,13 +21,14 @@ int main(){
 
     // Main loop
     while(1){
+        // This will get the length in bytes of the user input
         lengthOfUserInput = usb_serial_available();
         
-        // If bytes or waiting in buffer to be addressed
+        // If bytes are waiting in buffer to be addressed
         if(lengthOfUserInput != 0){
             
             // This will read one byte 0-255 off the buffer
-            // Still need to read the whole data.
+            // Still need to figure how to read the whole data.
             userInput = usb_serial_getchar();
         }
         
