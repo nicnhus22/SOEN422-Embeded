@@ -25,8 +25,8 @@
          ADMUX |= (1 << REFS0) | 0x1;
 
          // Start single conversion
-         ADCSRA = (1 << ADEN) | (1 << ADPS2) | (ADPS1) | (ADPS0);
-         ADCSRA = (1 << ADSC);
+         ADCSRA |= (1 << ADEN) | (1 << ADPS2) | (ADPS1) | (ADPS0);
+         ADCSRA |= (1 << ADSC);
 
          char buffer[25];
          memset(buffer, ' ', 25);
