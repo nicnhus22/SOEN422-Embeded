@@ -22,7 +22,7 @@ int main(){
   	//Select ADC Channel ch must be 0-7
 	ADMUX |= (1 << REFS0) | 0x1;
 	
-	ADCSRA=(1<<ADEN) | (1<<ADPS2) | (ADPS1) | (ADPS0);
+	ADCSRA |= (1<<ADEN) | (1<<ADPS2) | (ADPS1) | (ADPS0);
   	
   	char buffer[25];
   	memset(buffer, ' ',25);
@@ -30,7 +30,7 @@ int main(){
   	while(1){
 	
 		//Start Single conversion		
-		ADCSRA=(1<<ADSC);
+		ADCSRA |= (1<<ADSC);
 
 		//Wait for conversion to complete
 		while(ADCSRA & (1<<ADIF));
@@ -43,5 +43,4 @@ int main(){
 		
 		_delay_ms(1000);
   	}
-	
 }
