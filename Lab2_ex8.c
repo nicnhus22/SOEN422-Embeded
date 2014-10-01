@@ -14,7 +14,10 @@ int main(){
     CPU_PRESCALE(CPU_16MHz);
 
     uint8_t lengthOfUserInput;
-    uint8_t userInput;
+    uint16_t userInput;
+    
+    // Store user input in 32bits buffer
+    char buf[32];
 
     // Set PIN7 to be output
     DDRB |= (1<<7);
@@ -32,8 +35,14 @@ int main(){
             // Edit: This will read everyting and echo it.
             while(1){
          		userInput = usb_serial_getchar();
-         		if (userInput >= 0) usb_serial_putchar(n);
+         		if (userInput >= 0){
+         		   // DEBUG: Display char each time
+         		   usb_serial_putchar(n); 
+         		   // Push data into buffer
+         		   buf++ = userInput;
+         		} 
             }
+            // Now we have the whole data in buf[32]
         }
     }
 }
