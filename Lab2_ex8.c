@@ -9,12 +9,12 @@
    frequency of the blinking LED or frequency of the interrupt can be adjusted.
 */
 int main(){
+   
+    // Set CPU prescaler
+    CPU_PRESCALE(CPU_16MHz);
 
     uint8_t lengthOfUserInput;
     uint8_t userInput;
-
-    // Set CPU prescaler
-    CPU_PRESCALE(CPU_16MHz);
 
     // Set PIN7 to be output
     DDRB |= (1<<7);
