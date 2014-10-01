@@ -29,8 +29,11 @@ int main(){
             
             // This will read one byte 0-255 off the buffer
             // Still need to figure how to read the whole data.
-            userInput = usb_serial_getchar();
+            // Edit: This will read everyting and echo it.
+            while(1){
+         		userInput = usb_serial_getchar();
+         		if (userInput >= 0) usb_serial_putchar(n);
+            }
         }
-        
     }
 }
