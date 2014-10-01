@@ -5,6 +5,11 @@
 #define F_CPU 16000000L
 #define CPU_16MHz 0x00
 
+
+/*
+   Write a sketch that cycles through 4 levels of brightness on an LED array.
+   Note: We made it fade in-out instead of four level of brightness
+*/
 int main(){
    // Set CPU prescaler
    CPU_PRESCALE(CPU_16MHz);   
