@@ -1,14 +1,13 @@
    
-   
-   #include <avr/io.h>
-   #include <util/delay.h>
-   #include <stdio.h>
-   
-   #include "usb_serial.h"
-   
-   #define CPU_PRESCALE(n) (CLKPR = 0x80, CLKPR = (n))
-   #define F_CPU 16000000L
-   #define CPU_16MHz 0x00
+#include <avr/io.h>
+#include <util/delay.h>
+#include <stdio.h>
+  
+#include "usb_serial.h"
+  
+#define CPU_PRESCALE(n) (CLKPR = 0x80, CLKPR = (n))
+#define F_CPU 16000000L
+#define CPU_16MHz 0x00
 
 /*
    Write a sketch that will toggle a LED by using a hardware timer (use a 16bit timer). 
