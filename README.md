@@ -10,3 +10,7 @@ Make it an hex file:
 avr-objcopy -O ihex ex4out.o output.hex
 
 Load it!
+
+Link to get the internet on the BeagleBone
+
+http://stackoverflow.com/questions/19481415/share-the-internet-access-from-laptop-to-beaglebone-black-and-then-access-it-thr
