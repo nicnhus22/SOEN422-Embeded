@@ -1,14 +1,14 @@
 
 Pin Setup For Project:
 
-First H-Bridge Top Left Wheel:</br>
+First H-Bridge Top Left Wheel:
 
-M1 Enable:  #2 (needs 5V)<br/>
-M1 Forward: #27 (PWM)<br/>
-M1 Reverse: #0 (PWM)<br/>
+M1 Enable:  #2 (needs 5V)
+M1 Forward: #27 (PWM)
+M1 Reverse: #0 (PWM)
 
-Second H-Bridge Bottom Left Wheel:</br>
+Second H-Bridge Bottom Left Wheel:
 
-M1 Enable:  #13 (needs 5V)<br/>
-M1 Forward: #14 (PWM)<br/>
-M1 Reverse: #15 (PWM)<br/>
+M1 Enable:  #13 (needs 5V)
+M1 Forward: #14 (PWM)
+M1 Reverse: #15 (PWM)
