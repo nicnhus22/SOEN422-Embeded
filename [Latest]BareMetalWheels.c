@@ -5,7 +5,15 @@
 #define F_CPU 16000000L
 #define CPU_16MHz 0x00
 
-
+/*-------------------------------------------------------------------
+ *	This part of the code provides low level functions  to
+ *	control the wheels. It sets the timers to generate PWM
+ *	values and provides two functions:
+ *		- leftDrive(int direction, int pwm);
+ *		- rightDrive(int direction, int pwm);
+ *
+ *-------------------------------------------------------------------
+ */
 void setup(){ 
     setupTimer3();
     setupTimer0();
@@ -13,8 +21,6 @@ void setup(){
 
 
 // This timer will control the left wheels
-// ChannelA: Forward
-// ChannelB: Forward
 void setupTimer3(){
 
     DDRC |= (1<<1); // ENABLE1
@@ -25,8 +31,6 @@ void setupTimer3(){
 }
 
 // This timer will control the right wheels
-// ChannelC: Forward
-// ChannelB: Reverse
 void setupTimer0(){
 
     DDRC |= (1<<0); // ENABLE1
@@ -40,7 +44,7 @@ void setupTimer0(){
 void leftDrive(int direction, int pwmValue){
     clearLeftMotorRegisters();
 
-    if(direction > 0){ // Forward
+    if(direction < 0){ // Forward
     	PORTC |= (1<<1);
     
     	DDRC |= (0<<6); // OCR3A
@@ -48,7 +52,7 @@ void leftDrive(int direction, int pwmValue){
     
     	OCR3A = 0;
     	OCR3B = pwmValue;
-    }else if(direction < 0) { // Reverse
+    }else if(direction > 0) { // Reverse
     	PORTC |= (1<<1);
     
     	DDRC |= (1<<6); // OCR3A
@@ -103,15 +107,67 @@ void clearRightMotorRegisters(){
 }
 
 
+/*-------------------------------------------------------------------
+ *	This part of the code provides higher level functions to
+ *	control the wheels. Functions are the following:
+ *		- forward(int pwmValue);
+ *		- reverse(int pwmValue);
+ *		- turnLeft(int pwmValue);
+ *		- turnRight(int pwmValue);
+ *		- rotateLeft(int pwmValue);
+ *		- rotateRight(int pwmValue);
+ *
+ *-------------------------------------------------------------------
+ */
+ 
+void forward(int pwmValue){
+  leftDrive(1, pwmValue);
+  rightDrive(1, pwmValue);
+}
+
+void reverse(int pwmValue){
+  leftDrive(-1, pwmValue);
+  rightDrive(-1, pwmValue);
+}
+
+void turnLeft(int pwmValue){
+  leftDrive(0, pwmValue);
+  rightDrive(1, pwmValue);
+}
+
+void turnRight(int pwmValue){
+  leftDrive(1, pwmValue);
+  rightDrive(0, pwmValue);
+}
+
+void rotateLeft(int pwmValue){
+  leftDrive(-1, pwmValue);
+  rightDrive(1, pwmValue);
+}
+
+void rotateRight(int pwmValue){
+  leftDrive(1, pwmValue);
+  rightDrive(-1, pwmValue);
+}
+
+
 int main(){
    // Set CPU prescaler
    CPU_PRESCALE(CPU_16MHz);   
    
    setup(); //sets phase correct on timer 0 for the wheels.
    
-   rightDrive(1,255);
-   leftDrive(-1,255);
+   _delay_ms(2000);
+   reverse(255);
+   _delay_ms(2000);
+   forward(255);
+   _delay_ms(2000);
+   turnLeft(255);
+   _delay_ms(2000);
+   turnRight(255);
+   _delay_ms(2000);
+   rotateLeft(255);
+   _delay_ms(2000);
+   rotateRight(255);
    
 }
-
-
