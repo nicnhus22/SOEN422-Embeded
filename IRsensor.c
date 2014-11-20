@@ -24,7 +24,7 @@ void setupIR(){
 void selectLeftIR(){
 
 	ADMUX &= ~ADMUX;
-	ADMUX |= (1 << REFS0); //PIN 0
+	ADMUX |= (1 << REFS0) | (1 << MUX0); //PIN 1
 	ADCSRA |= (1<<ADSC);
 	while(ADCSRA & (1<<ADIF));
 	value = ADC;
@@ -33,9 +33,8 @@ void selectLeftIR(){
 }
 
 void selectMiddleIR(){
-
 	ADMUX &= ~ADMUX;
-	ADMUX |= (1 << REFS0) | (1 << MUX0); //PIN 1
+	ADMUX |= (1 << REFS0); //PIN 0
 	ADCSRA |= (1<<ADSC);
 	while(ADCSRA & (1<<ADIF));
 	value = ADC;
